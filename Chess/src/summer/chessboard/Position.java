@@ -11,8 +11,8 @@ public class Position {
      * @throws Exception - if row or column are out of range (1-8)
      */
     public Position(int row, int col) throws Exception{
-        ValidationException.checkNumberLimits("Row", row, 1, 8);
-        ValidationException.checkNumberLimits("Column", col, 1, 8);
+        ValidationException.checkNumberLimits("Row", row, 0, 7);
+        ValidationException.checkNumberLimits("Column", col, 0, 7);
     
         this.row = row;
         this.col = col;

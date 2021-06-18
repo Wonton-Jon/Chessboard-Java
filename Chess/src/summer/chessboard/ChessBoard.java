@@ -80,7 +80,105 @@ public class ChessBoard {
         board[7][4] = new King(7 , 4 , "Black");
     }
     
+    /**
+     * @param fromPosition - where a piece is moving from
+     * @param toPosition - where a piece is trying to move to
+     * @return - if the piece was moved or not
+     */
+    public boolean movePiece(Position fromPosition, Position toPosition){
+        return false;
+    }
     
+    /**
+     * @return the chess board printed in the format below
+     */
+    //     BLACK
+    //7 r n b q k b n r
+    //6 p p p p p p p p
+    //5 n n n n n n n n
+    //4 n n n n n n n n
+    //3 n n n n n n n n
+    //2 n n n n n n n n
+    //1 p p p p p p p p
+    //0 r n b q k b n r
+    //  a b c d e f g h
+    //     WHITE
+    @Override
+    public String toString(){
+        StringBuilder boardToString = new StringBuilder();
+        int rowNum;
+        
+        boardToString.append(printColumnLetters());
+        
+        for (rowNum = board.length; rowNum > 0; rowNum--) {
+            boardToString.append(printHorizontalBorder());
+            boardToString.append(printSpaces(rowNum));
+        }
+        boardToString.append(printHorizontalBorder());
+        boardToString.append(printColumnLetters());
+        
+        return boardToString.toString();
+    }
     
+    /**
+     * @return - the row boarders as a string
+     */
+    private String printHorizontalBorder(){
+        StringBuilder border = new StringBuilder();
+        
+        border.append("  ");
+        
+        for (int colNumber = 0; colNumber < board.length; colNumber++){
+            border.append("+--");
+        }
+        border.append("+ ");
+        border.append("\n");
+        
+        return border.toString();
+    }
+    
+    /**
+     * @param rowNumber- row of chessboard
+     * @return - the spaces of the board
+     */
+    private String printSpaces(int rowNumber){
+        StringBuilder borders = new StringBuilder();
+    
+        borders.append(rowNumber);
+        borders.append(" ");
+    
+        for(int colNumber = 0; colNumber < board.length; colNumber++){
+            borders.append("|");
+            
+            //Check if piece is null to print space or print unicode value
+            if(board[rowNumber - 1][colNumber] != null)
+                borders.append(board[rowNumber - 1][colNumber].toString());
+            else
+                borders.append("\u2001\u2001");
+    
+        }
+        borders.append("| ");
+        borders.append(rowNumber);
+        borders.append("\n");
+    
+        return borders.toString();
+    }
+    
+    /**
+     * @return - column letters as a string
+     */
+    private String printColumnLetters(){
+        StringBuilder letters = new StringBuilder();
+        
+        letters.append("   ");
+        
+        for(char letter = 'a'; letter <= 'h'; letter++) {
+            letters.append(letter);
+            letters.append("  ");
+        }
+        letters.append("\n");
+        
+        return letters.toString();
+    }
     
 }
